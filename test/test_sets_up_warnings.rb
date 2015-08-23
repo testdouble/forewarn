@@ -52,13 +52,14 @@ class TestWrapsMethods < Minitest::Test
   end
 
   def test_collaboration
-    give(@collects_warners).collect { [gimme(FakeWarner)] }
+    warners = [FakeWarner.new]
+    give(@collects_warners).collect { warners }
     method_values = [Forewarn::Values::Method.new]
-    give(@builds_method_values).build(Kernel.method(:method)) { method_values }
+    give(@builds_method_values).build(warners.first) { method_values }
 
     @subject.wrap!
 
-    verify(@overrides_methods).override!
+    verify(@overrides_methods).override!(method_values)
     verify(@remembers_wrapped_methods).remember!(method_values)
   end
 end

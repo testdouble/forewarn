@@ -7,5 +7,12 @@ module Forewarn
       @remembers_wrapped_methods = remembers_wrapped_methods
       @overrides_methods = overrides_methods
     end
+
+    def wrap!
+      methods = @collects_warners.collect
+        .map {|w| @builds_method_values.build(w) }.flatten
+      @overrides_methods.override!(methods)
+      @remembers_wrapped_methods.remember!(methods)
+    end
   end
 end
