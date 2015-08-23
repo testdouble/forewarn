@@ -6,8 +6,9 @@ module Forewarn
     :logger => Kernel.method(:warn),
     :reporter => Forewarn::Reporters::Json,
     :report_destination => "log/usage_warning.json"
-  }
-  @__config = DEFAULT_CONFIG.clone
+  }.freeze
+
+  @__config = DEFAULT_CONFIG.dup
 
   def self.config(overrides = {})
     @__config.merge!(overrides)

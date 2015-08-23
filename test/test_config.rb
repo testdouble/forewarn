@@ -3,6 +3,7 @@ require 'minitest_helper'
 class TestConfig < Minitest::Test
   def test_defaults
     assert_equal Forewarn::DEFAULT_CONFIG, Forewarn.config
+    assert Forewarn::DEFAULT_CONFIG.frozen?
   end
 
   def test_overwrite_an_option
