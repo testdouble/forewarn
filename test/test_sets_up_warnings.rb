@@ -1,33 +1,5 @@
 require 'minitest_helper'
 
-module Forewarn
-  class BuildsMethodValues
-    def build(methods)
-    end
-  end
-end
-
-module Forewarn
-  class RemembersWrappedMethods
-    def remember!(methods)
-    end
-  end
-end
-
-module Forewarn
-  class OverridesMethods
-    def override!(methods)
-    end
-  end
-end
-
-module Forewarn
-  module Values
-    class Method
-    end
-  end
-end
-
 class TestWrapsMethods < Minitest::Test
   class FakeWarner
     def methods

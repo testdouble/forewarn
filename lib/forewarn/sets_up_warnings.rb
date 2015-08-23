@@ -1,7 +1,12 @@
+require "forewarn/builds_method_values"
+require "forewarn/remembers_wrapped_methods"
+require "forewarn/overrides_methods"
+
 module Forewarn
   class SetsUpWarnings
-    def initialize(builds_method_values,
-                   remembers_wrapped_methods, overrides_methods)
+    def initialize(builds_method_values = BuildsMethodValues.new,
+                   remembers_wrapped_methods = RemembersWrappedMethods.new,
+                   overrides_methods = OverridesMethods.new)
       @builds_method_values = builds_method_values
       @remembers_wrapped_methods = remembers_wrapped_methods
       @overrides_methods = overrides_methods
