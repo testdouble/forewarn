@@ -1,0 +1,1 @@
+require "forewarn/values/method"
