@@ -13,5 +13,4 @@ class TestConfig < Minitest::Test
     assert_equal Forewarn.config, result, "change is persisted"
     assert_equal Forewarn::DEFAULT_CONFIG[:enabled], true, "default is same"
   end
-
 end
