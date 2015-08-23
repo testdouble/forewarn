@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class TestWrapsMethods < Minitest::Test
+class TestWrapsMethods < ForewarnTest
   class FakeWarner
     def methods
       [Kernel.method(:method)]
