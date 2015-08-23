@@ -20,7 +20,7 @@ class TestWrapsMethods < ForewarnTest
     method_values = [Forewarn::Values::Method.new]
     give(@builds_method_values).build(is_a(FakeWarner)) { method_values }
 
-    @subject.wrap!
+    @subject.set_up!
 
     verify(@overrides_methods).override!(method_values)
     verify(@remembers_wrapped_methods).remember!(method_values)
