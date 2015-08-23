@@ -1,13 +1,6 @@
 require 'minitest_helper'
 
 module Forewarn
-  class CollectsWarners
-    def collect(warners)
-    end
-  end
-end
-
-module Forewarn
   class BuildsMethodValues
     def build(methods)
     end
@@ -44,7 +37,6 @@ class TestWrapsMethods < Minitest::Test
 
   def setup
     @subject = Forewarn::SetsUpWarnings.new(
-      @collects_warners = gimme(Forewarn::CollectsWarners),
       @builds_method_values = gimme(Forewarn::BuildsMethodValues),
       @remembers_wrapped_methods = gimme(Forewarn::RemembersWrappedMethods),
       @overrides_methods = gimme(Forewarn::OverridesMethods)
@@ -52,10 +44,9 @@ class TestWrapsMethods < Minitest::Test
   end
 
   def test_collaboration
-    warners = [FakeWarner.new]
-    give(@collects_warners).collect { warners }
+    Forewarn.config[:warners] = [FakeWarner]
     method_values = [Forewarn::Values::Method.new]
-    give(@builds_method_values).build(warners.first) { method_values }
+    give(@builds_method_values).build(is_a(FakeWarner)) { method_values }
 
     @subject.wrap!
 
