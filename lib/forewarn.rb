@@ -6,5 +6,7 @@ require "forewarn/values"
 require "forewarn/sets_up_warnings"
 
 module Forewarn
-  # Your code goes here...
+  def self.start!
+    SetsUpWarnings.new.set_up!
+  end
 end
