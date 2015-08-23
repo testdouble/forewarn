@@ -8,11 +8,11 @@ class TestWrapsMethods < ForewarnTest
   end
 
   def setup
-    @subject = Forewarn::SetsUpWarnings.new(
-      @builds_method_values = gimme(Forewarn::BuildsMethodValues),
-      @remembers_wrapped_methods = gimme(Forewarn::RemembersWrappedMethods),
-      @overrides_methods = gimme(Forewarn::OverridesMethods)
-    )
+    @builds_method_values = gimme_next(Forewarn::BuildsMethodValues)
+    @remembers_wrapped_methods = gimme_next(Forewarn::RemembersWrappedMethods)
+    @overrides_methods = gimme_next(Forewarn::OverridesMethods)
+
+    @subject = Forewarn::SetsUpWarnings.new
   end
 
   def test_collaboration
