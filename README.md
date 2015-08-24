@@ -82,7 +82,7 @@ no other action (e.g. won't print to STDOUT or STDERR).
 
 ## Background
 
-Forewarn was inspired by this Twitter thread about the proposed Ruby 3 behavior,
+Forewarn was inspired by this [Twitter thread](https://twitter.com/wycats/status/634538646402674688) about the proposed Ruby 3 behavior,
 which would freeze all String literals by default unless a magic comment
 appeared in the source listing.
 
