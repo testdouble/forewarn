@@ -5,8 +5,9 @@ module Forewarn
   DEFAULT_CONFIG = {
     :enabled => true,
     :logger => Kernel.method(:warn),
-    :reporter => Forewarn::Reporters::Json,
-    :report_destination => "log/usage_warning.json",
+# TODO: implement a JSON reporter
+#    :reporter => Forewarn::Reporters::Json,
+#    :report_destination => "log/usage_warning.json",
     :warners => [Forewarn::Warners::StringMutation]
   }.freeze
 
