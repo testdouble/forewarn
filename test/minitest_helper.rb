@@ -4,6 +4,7 @@ require 'forewarn'
 require 'minitest/autorun'
 
 require 'gimme'
+require 'pry'
 
 class ForewarnTest < Minitest::Test
   def after_teardown
