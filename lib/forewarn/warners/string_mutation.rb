@@ -12,9 +12,15 @@ module Forewarn
     private
 
       def method_names
-        String.instance_methods.select {|m|
-          m.to_s.end_with?('!')
-        } + [:"[]=", :"<<", :concat, :insert, :replace, :setbyte, :taint]
+        String.instance_methods.select { |method_name|
+          method_name.to_s.end_with?('!')
+        } + [
+          :"[]=", :"<<", :clear, :concat, :extend, :insert,
+          :instance_variable_set, :prepend, :replace, :setbyte, :taint
+        ] - [
+          :"!" # <-- lol BasicObject#! is A-okay.
+        ]
+
       end
     end
   end
