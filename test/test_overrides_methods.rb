@@ -18,6 +18,6 @@ class TestOverridesMethods < ForewarnTest
     @subject.override!([method])
     Cat.new.meow
 
-    verify(@triggers_warning).trigger!(method)
+    verify(@triggers_warning).trigger!(method, regex(/.*forewarn\/test\/test_overrides_methods.rb:19:in `test_trigger'/))
   end
 end

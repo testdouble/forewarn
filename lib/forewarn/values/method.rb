@@ -29,13 +29,6 @@ module Forewarn
         end
       end
 
-      def source_location
-        if !@method.respond_to?(:source_location) || @method.source_location.nil?
-          "Source location unknown"
-        else
-          "Source at: '#{@method.source_location.join(":")}'"
-        end
-      end
     end
   end
 end

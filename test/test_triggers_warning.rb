@@ -24,8 +24,8 @@ class TestTriggersWarning < ForewarnTest
     Forewarn.config(:logger => method(:fake_warn))
     method = Forewarn::Values::Method.new(BasicWarner.new, Turtle.instance_method(:swim))
 
-    @subject.trigger!(method)
+    @subject.trigger!(method, "foo/bar/baz.rb:1337 in 'lolol'")
 
-    assert @last_warning =~ /WARN: Aquatic turtle method TestTriggersWarning::Turtle#swim was invoked! Source at: '.*forewarn\/test\/test_triggers_warning\.rb:9'/
+    assert_equal @last_warning, "WARN: Aquatic turtle method 'TestTriggersWarning::Turtle#swim' was invoked! (Called from: \"foo/bar/baz.rb:1337 in 'lolol'\")"
   end
 end

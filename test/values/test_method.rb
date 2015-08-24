@@ -54,20 +54,6 @@ class TestMethod < ForewarnTest
     assert_equal :woof, new_method(nil, Dog.method(:yelp).unbind).bind(Dog).call
   end
 
-  def test_source_location_when_its_known
-    faux_method = gimme(Method)
-    give(faux_method).respond_to?(:source_location) { true }
-    give(faux_method).source_location { ["some_file.rb", 12] }
-    method = new_method(nil, faux_method)
-
-    assert_equal "Source at: 'some_file.rb:12'", method.source_location
-  end
-
-  def test_source_location_when_its_a_c_method
-    method = new_method(nil, String.instance_method(:gsub!))
-
-    assert_equal "Source location unknown", method.source_location
-  end
 private
 
   def new_method(warner, method)

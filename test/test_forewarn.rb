@@ -26,6 +26,6 @@ class TestForewarn < ForewarnTest
 
     some_string << "P"
     assert_equal "WOOOP", some_string
-    assert_equal "", @warnings.first
+    assert_match /WARN: String mutation method 'String#<<' was invoked! \(Called from: \".*forewarn\/test\/test_forewarn.rb:27:in `test_integrated_thing_works'\"\)/, @warnings.first
   end
 end

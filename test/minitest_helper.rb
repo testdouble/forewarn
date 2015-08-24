@@ -12,3 +12,18 @@ class ForewarnTest < Minitest::Test
     Forewarn.config(Forewarn::DEFAULT_CONFIG)
   end
 end
+
+class RegexMatcher
+  def initialize(regex_input)
+    @regex_input = regex_input
+  end
+
+  def matches?(arg)
+    arg =~ @regex_input
+  end
+end
+def regex(regex_input)
+  RegexMatcher.new(regex_input)
+end
+
+
