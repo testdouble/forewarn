@@ -8,13 +8,8 @@ module Forewarn
         @method = method
       end
 
-      # It's a pain to try to suss this out by
-      # The method's owner (Dog vs Class:Dog) classes, etc
-      # but Method#inspect's C implementation makes finding
-      # instance-y-ness pretty straightforward by using the # vs .
-      # separator for the method
       def instance_method?
-        @method.to_s =~ /<.*#/
+        !@method.owner.singleton_class?
       end
 
       def name
