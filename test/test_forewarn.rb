@@ -12,4 +12,20 @@ class TestForewarn < ForewarnTest
 
     verify(sets_up_warnings).set_up!
   end
+
+  def fake_warning(warning)
+    @warnings ||= []
+    @warnings << warning
+  end
+  def test_integrated_thing_works
+    Forewarn.config(:logger => method(:fake_warning))
+
+    String some_string = "WOOO"
+
+    Forewarn.start!
+
+    some_string << "P"
+    assert_equal "WOOOP", some_string
+    assert_equal "", @warnings.first
+  end
 end
