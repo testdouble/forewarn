@@ -5,3 +5,4 @@ gemspec
 
 gem 'gimme'
 gem 'pry'
+gem 'minitest'
