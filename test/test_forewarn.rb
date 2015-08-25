@@ -13,6 +13,14 @@ class TestForewarn < ForewarnTest
     verify(sets_up_warnings).set_up!
   end
 
+  def test_start_sets_up_warnings
+    tears_down_warnings = gimme_next(Forewarn::TearsDownWarnings)
+
+    Forewarn.stop!
+
+    verify(tears_down_warnings).tear_down!
+  end
+
   def fake_warning(warning)
     @warnings ||= []
     @warnings << warning
@@ -26,6 +34,6 @@ class TestForewarn < ForewarnTest
 
     some_string << "P"
     assert_equal "WOOOP", some_string
-    assert_match /WARN: String mutation method 'String#<<' was invoked! \(Called from: \".*forewarn\/test\/test_forewarn.rb:27:in `test_integrated_thing_works'\"\)/, @warnings.first
+    assert_match /WARN: String mutation method 'String#<<' was invoked! \(Called from: \".*forewarn\/test\/test_forewarn.rb:35:in `test_integrated_thing_works'\"\)/, @warnings.first
   end
 end
