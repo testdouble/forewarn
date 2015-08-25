@@ -17,7 +17,7 @@ potential to wrap some very high-traffic methods and negatively impact
 performance):
 
 ``` ruby
-gem 'forewarn', :groups => [:development, :test]
+gem 'forewarn', :group => [:development, :test]
 ```
 
 ### Basic use
