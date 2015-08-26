@@ -16,6 +16,7 @@ module Forewarn
       @subject.tear_down!
 
       verify(@unoverrides_methods).unoverride!(methods)
+      verify(@remembers_wrapped_methods).forget!
     end
   end
 end

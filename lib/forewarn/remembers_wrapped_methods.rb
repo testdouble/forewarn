@@ -1,10 +1,17 @@
 module Forewarn
   class RemembersWrappedMethods
+    @@wrapped_methods = []
+
     def remember!(methods)
-      # TODO: remember which methods were wrapped so we can implement stop!
+      @@wrapped_methods += methods
     end
 
     def remembered_methods
+      @@wrapped_methods
+    end
+
+    def forget!
+      @@wrapped_methods = []
     end
   end
 end

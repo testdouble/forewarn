@@ -20,7 +20,6 @@ module Forewarn
         ] - [
           :"!" # <-- lol BasicObject#! is A-okay.
         ]
-
       end
     end
   end

@@ -12,6 +12,7 @@ module Forewarn
       @unoverrides_methods.unoverride!(
         @remembers_wrapped_methods.remembered_methods
       )
+      @remembers_wrapped_methods.forget!
     end
   end
 end

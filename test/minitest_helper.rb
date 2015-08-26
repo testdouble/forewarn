@@ -10,6 +10,10 @@ class ForewarnTest < Minitest::Test
   def after_teardown
     Gimme.reset
     Forewarn.config(Forewarn::DEFAULT_CONFIG)
+
+    # Clear class-stateful objects
+    # Once this works, do this instead: Forewarn.stop!
+    Forewarn::RemembersWrappedMethods.new.forget!
   end
 end
 
