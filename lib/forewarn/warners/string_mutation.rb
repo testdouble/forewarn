@@ -6,7 +6,8 @@ module Forewarn
       end
 
       def methods
-        method_names.map { |m| String.instance_method(m) }
+        some_string = String.new("hi!")
+        method_names.map { |m| some_string.method(m) }
       end
 
     private
