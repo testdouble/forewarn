@@ -32,7 +32,7 @@ class TestForewarn
       some_string << "P"
 
       assert_equal "WOOOP", some_string
-      assert_match /WARN: String mutation method 'String#<<' was invoked! \(Called from: \".*forewarn\/test\/test_forewarn.rb:34:in `test_integrated_thing_works'\"\)/, @warnings.first
+      assert_match /WARN: String mutation method 'String#<<' was invoked! \(Called from: \".*forewarn\/test\/test_forewarn.rb:\d+:in `test_integrated_thing_works'\"\)/, @warnings.first
     end
 
     def test_integrated_doesnt_broaden_beyond_receiver_types
