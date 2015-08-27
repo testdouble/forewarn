@@ -11,11 +11,7 @@ module Forewarn
             triggers_warning.trigger!(method, caller_locations(1,1)[0].to_s)
             method.bind(self).call(*args, &blk)
           else
-            begin
-              real_method.unbind.bind(self).call(*args, &blk)
-            rescue TypeError # yolo
-              real_method.call(*args, &blk)
-            end
+            real_method.call(*args, &blk)
           end
         end
       end
