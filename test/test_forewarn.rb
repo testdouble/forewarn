@@ -28,4 +28,15 @@ class TestForewarn < ForewarnTest
     assert_equal "WOOOP", some_string
     assert_match /WARN: String mutation method 'String#<<' was invoked! \(Called from: \".*forewarn\/test\/test_forewarn.rb:27:in `test_integrated_thing_works'\"\)/, @warnings.first
   end
+
+  def test_integrated_doesnt_broaden_beyond_receiver_types
+    Forewarn.config(:logger => method(:fake_warning))
+
+    thing = Object.new
+
+    Forewarn.start!
+
+    thing.taint
+    assert_nil @warnings
+  end
 end
