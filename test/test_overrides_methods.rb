@@ -7,17 +7,32 @@ class TestOverridesMethods < ForewarnTest
     @subject = Forewarn::OverridesMethods.new
   end
 
-  class Cat
+  class Animal
+    def make_noise
+      :yelp
+    end
+  end
+  class Cat < Animal
     def meow
     end
   end
 
   def test_trigger
-    method = Forewarn::Values::Method.new(nil, Cat.instance_method(:meow))
+    method = Forewarn::Values::Method.new(nil, Cat.new.method(:make_noise))
 
     @subject.override!([method])
-    Cat.new.meow
+    Cat.new.make_noise
 
-    verify(@triggers_warning).trigger!(method, regex(/.*forewarn\/test\/test_overrides_methods.rb:19:in `test_trigger'/))
+    verify(@triggers_warning).trigger!(method, regex(/.*forewarn\/test\/test_overrides_methods.rb:24:in `test_trigger'/))
+  end
+
+  def test_skip_trigger_on_broader_receiver_type
+    method = Forewarn::Values::Method.new(nil, Cat.new.method(:make_noise))
+
+    @subject.override!([method])
+    result = Animal.new.make_noise
+
+    assert_equal :yelp, result
+    verify(@triggers_warning, 0).trigger!
   end
 end
