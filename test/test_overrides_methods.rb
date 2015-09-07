@@ -3,7 +3,6 @@ require "minitest_helper"
 class TestOverridesMethods < ForewarnTest
   def setup
     @triggers_warning = gimme_next(Forewarn::TriggersWarning)
-
     @subject = Forewarn::OverridesMethods.new
   end
 
@@ -12,6 +11,7 @@ class TestOverridesMethods < ForewarnTest
       :yelp
     end
   end
+
   class Cat < Animal
     def meow
     end
@@ -22,8 +22,9 @@ class TestOverridesMethods < ForewarnTest
 
     @subject.override!([method])
     Cat.new.make_noise
+    called_from = __LINE__ - 1
 
-    verify(@triggers_warning).trigger!(method, regex(/.*forewarn\/test\/test_overrides_methods.rb:24:in `test_trigger'/))
+    verify(@triggers_warning).trigger!(method, regex(/.*forewarn\/test\/test_overrides_methods.rb:#{called_from}:in `#{__method__}'/))
   end
 
   def test_skip_trigger_on_broader_receiver_type
