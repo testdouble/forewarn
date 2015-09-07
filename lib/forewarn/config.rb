@@ -11,10 +11,13 @@ module Forewarn
     :warners => [Forewarn::Warners::StringMutation]
   }.freeze
 
-  @__config = DEFAULT_CONFIG.dup
-
   def self.config(overrides = {})
     @__config.merge!(overrides)
   end
+
+  def self.reset_config
+    @__config = DEFAULT_CONFIG.dup
+  end
+  reset_config
 end
 

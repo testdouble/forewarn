@@ -7,13 +7,34 @@ require 'gimme'
 require 'pry'
 
 class ForewarnTest < Minitest::Test
+  def forewarn_logger
+    @logger ||= ForewarnLogger.new
+  end
+
+  def forewarn_test_config
+    { enabled: true,
+      logger:  forewarn_logger,
+      warners: [],
+    }
+  end
+
   def after_teardown
     Gimme.reset
-    Forewarn.config(Forewarn::DEFAULT_CONFIG)
+    Forewarn.config(forewarn_test_config)
   end
 
   def regex(regex_input)
     RegexMatcher.new(regex_input)
+  end
+end
+
+class ForewarnLogger
+  def call(*args)
+    logged << args
+  end
+
+  def logged
+    @logged ||= []
   end
 end
 
