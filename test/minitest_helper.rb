@@ -11,6 +11,10 @@ class ForewarnTest < Minitest::Test
     Gimme.reset
     Forewarn.config(Forewarn::DEFAULT_CONFIG)
   end
+
+  def regex(regex_input)
+    RegexMatcher.new(regex_input)
+  end
 end
 
 class RegexMatcher
@@ -22,8 +26,3 @@ class RegexMatcher
     arg =~ @regex_input
   end
 end
-def regex(regex_input)
-  RegexMatcher.new(regex_input)
-end
-
-
