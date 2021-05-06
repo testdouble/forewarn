@@ -22,7 +22,7 @@ gem 'forewarn', :group => [:development, :test]
 
 ### Basic use
 
-This [simple listing](https://github.com/testdouble/forewarn/blob/master/docs/driver.rb) demonstrates basic usage:
+This [simple listing](https://github.com/testdouble/forewarn/blob/main/docs/driver.rb) demonstrates basic usage:
 
 ``` ruby
 require 'forewarn'
@@ -48,7 +48,7 @@ YEAH fooUH OH
 ### Writing a Warner
 
 To write your own warner object, you just need a class with instance methods of
-`message` and `methods`. The implementation of built-in [StringMutation](https://github.com/testdouble/forewarn/blob/master/lib/forewarn/warners/string_mutation.rb)
+`message` and `methods`. The implementation of built-in [StringMutation](https://github.com/testdouble/forewarn/blob/main/lib/forewarn/warners/string_mutation.rb)
 should be a good example.
 
 To register your warner, just set or mutate the `warners` config property:
