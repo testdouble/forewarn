@@ -26,7 +26,8 @@ class TestForewarn
     end
 
     def test_integrated_thing_works
-      String some_string = "WOOO"
+      Forewarn.config[:warners] << Forewarn::Warners::StringMutation
+      some_string = "WOOO"
 
       Forewarn.start!
       some_string << "P"
